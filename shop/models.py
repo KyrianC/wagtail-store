@@ -1,13 +1,13 @@
+from cart.forms import CartAddProductForm
+
 from django.db import models
 from django.utils.html import format_html
 
-from wagtail.core.models import Page
-from wagtail.snippets.models import register_snippet
-from wagtail.core.fields import RichTextField
 from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.core.fields import RichTextField
+from wagtail.core.models import Page
 from wagtail.images.edit_handlers import ImageChooserPanel
-
-from modelcluster.fields import ParentalKey
+from wagtail.snippets.models import register_snippet
 
 
 @register_snippet
@@ -61,6 +61,12 @@ class Product(Page):
     # Return uppercase bold name for ModelAdmin list
     def name(self):
         return format_html("<strong>{}</strong>", self.title.upper())
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        cart_form = CartAddProductForm()
+        context["cart_form"] = cart_form
+        return context
 
 
 class ProductList(Page):
