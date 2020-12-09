@@ -24,9 +24,11 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    "payment",
     "cart",
     "shop",
     "home",
+    "orders",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     "wagtail.core",
     "modelcluster",
     "taggit",
+    "treemodeladmin",  # https://github.com/cfpb/wagtail-treemodeladmin
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -162,3 +165,7 @@ WAGTAIL_SITE_NAME = "store"
 BASE_URL = "http://example.com"
 
 CART_SESSION_ID = "cart"
+
+STRIPE_PUBLISHABLE_KEY = "pk_test_51GwohlBjQ630eujhfZEFlaFTtmkQ3raz4OCsx3rVrrBnggltkDoNCsCM6pMWQAcIxugUD3qXwjfoILyrF4ahlLXW00HORXltZh"
+STRIPE_SECRET_KEY = "sk_test_51GwohlBjQ630eujhGswTc3z6MzGKceTkkKgl8LLdA1hT0u5NCz8vLJyOBIymlCjrc4zDzia0TysiAtEqxRC770MD007FQ5YDVP"
+STRIPE_WEBHOOK_SECRET = "whsec_CKHciriiJv65KDmWVmV7z4qbBq7mfhCX"

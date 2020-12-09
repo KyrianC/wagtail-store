@@ -1,0 +1,13 @@
+<html>
+    <body>
+        <h1>PDF File</h1>  
+        <p>Order {{ order.id }}</p>
+        <ul>
+        {% for item in order.items.all %}
+            <li>{{ item.product.title  }} - ${{ item.price }}</li>
+
+        {% endfor  %}
+        </ul>
+        <h4>TOTAL: ${{ order.get_total_cost  }}</h4>
+    </body>
+</html>

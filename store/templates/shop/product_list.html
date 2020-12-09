@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+    {% for product in page.get_children %}
+        <h2><a href="{% pageurl product %}">{{ product.title }}</a></h2>
+    {% endfor %}
+{% endblock %}

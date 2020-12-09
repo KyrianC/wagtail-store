@@ -14,6 +14,8 @@ urlpatterns = [
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
     path("cart/", include("cart.urls", namespace="cart")),
+    path("orders/", include("orders.urls", namespace="orders")),
+    path("payment/", include("payment.urls", namespace="payment")),
 ]
 
 

@@ -13,6 +13,8 @@ class ProductAdmin(ThumbnailMixin, ModelAdmin):
     add_to_settings_menu = False  # or True to add your model to the Settings sub-menu
     exclude_from_explorer = False
     list_display = ("admin_thumb", "name", "category", "price")
+    list_filter = ("category", "live")
+    list_export = ("title", "category", "price")
     thumb_image_field_name = "thumbnail"
 
     # Optionally override the filter spec used to create each thumb

@@ -1,0 +1,35 @@
+#+TITLE: Wagtail Store
+
+*Wagtail store following "django 3 by example" store example*
+
+*  Todos
+** [4/18] Development
++ [X] Product + Catogory model
++ [X] Order model + modeladmin
++ [X] Cart
++ [X] Celery email
++ [-] Payment integration
+  + [X] checkout
+  + [ ] receive payouts
+  + [ ] refunds
++ [ ] Add filtering and exporting func to modelAdmin for Products and Orders
++ [ ] Invoicing + email templates
++ [ ] Product recommendation
++ [ ] Discount system
++ [ ] User authentication (address, orders, etc.)
++ [ ] Collection + Product attributes
++ [ ] Inventory Management 
++ [ ] Shipping Management
++ [ ] International Store (language, currency, shipping)
++ [ ] Add buttons to dashboard to directly changed order status
++ [ ] Add analytics to dashboard (google + custom)
++ [ ] Maybe Connect to telegram bot for real time updates and semi-automatisation
++ [ ] Dropshipping automatisation
+  
+** Production
+Will most likely go with digital ocean
+
++ [ ] Create Postgres db
++ [ ] Production emails
++ [ ] Check Celery and rabbitmq for production
++ [ ] Integrate Stripe in Production mode

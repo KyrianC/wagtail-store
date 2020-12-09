@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block content %}
+    <h1>Order Created</h1>
+    <button id="checkout-button" href="#">Checkout</button>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://js.stripe.com/v3/"></script>
+     <script type="text/javascript">
+     order_id = {{ order_id }}
+    console.log(order_id)
+      // Create an instance of the Stripe object with your publishable API key
+      var stripe = Stripe('pk_test_51GwohlBjQ630eujhfZEFlaFTtmkQ3raz4OCsx3rVrrBnggltkDoNCsCM6pMWQAcIxugUD3qXwjfoILyrF4ahlLXW00HORXltZh');
+      var checkoutButton = document.getElementById('checkout-button');
+
+      checkoutButton.addEventListener('click', function() {
+        // Create a new Checkout Session using the server-side endpoint you
+        // created in step 3.
+        fetch(`/payment/create/${order_id}/`, {
+          method: 'POST',
+        })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function(result) {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, you should display the localized error message to your
+          // customer using `error.message`.
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+      });
+    </script>
+{% endblock extra_js %}
