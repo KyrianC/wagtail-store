@@ -2,10 +2,22 @@ from django.db import models
 from shop.models import Product
 
 
-# TODO add status to order and order item for shipping etc
+# TODO add an uuid field to show customers and help them retrieve their orders
 
 
 class Order(models.Model):
+    INCOMPLETE = "ac"
+    AWAITING_PAYMENT = "ap"
+    AWAITING_FULLFILEMENT = "p"
+    CANCELLED = "c"
+    FULLFILED = "f"
+    STATUS_CHOICES = [
+        (INCOMPLETE, "Awaiting Checkout"),
+        (AWAITING_PAYMENT, "Awaiting Payment"),
+        (AWAITING_FULLFILEMENT, "Awaiting Fullfilement"),
+        (CANCELLED, "Cancelled"),
+        (FULLFILED, "Fullfiled"),
+    ]
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -16,6 +28,28 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
+    stripe_id = models.CharField(max_length=300, blank=True, null=True)
+    status = models.CharField(choices=STATUS_CHOICES, max_length=2, default=INCOMPLETE)
+
+    def __str__(self):
+        return f"Order {self.id}"
+
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.items.all())
+
+    # TODO send different emails in each cases
+    def update_status_paid(self):
+        self.status = self.AWAITING_FULLFILEMENT
+        self.paid = True
+        self.save()
+
+    def update_status_cancelled(self):
+        self.status = self.CANCELLED
+        self.save()
+
+    def update_status_awaiting_payment(self):
+        self.status = self.AWAITING_PAYMENT
+        self.save()
 
 
 class OrderItem(models.Model):
@@ -31,3 +65,6 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+    def get_product(self):
+        return self.product.title
