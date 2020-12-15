@@ -2,8 +2,8 @@
 
 *Wagtail store following "django 3 by example" store example*
 
-*  Todos
-** [4/18] Development
+* Todos
+** [5/19] Development
 + [X] Product + Catogory model
 + [X] Order model + modeladmin
 + [X] Cart
@@ -12,8 +12,11 @@
   + [X] checkout
   + [ ] receive payouts
   + [ ] refunds
-+ [ ] Add filtering and exporting func to modelAdmin for Products and Orders
-+ [ ] Invoicing + email templates
++ [X] Add filtering and exporting func to modelAdmin for Products and Orders
++ [-] Invoicing + email templates
+  - [X] normal django email
+  - [ ] Sending with an email provider like sendgrid
++ [-] Product filtering
 + [ ] Product recommendation
 + [ ] Discount system
 + [ ] User authentication (address, orders, etc.)
@@ -26,10 +29,31 @@
 + [ ] Maybe Connect to telegram bot for real time updates and semi-automatisation
 + [ ] Dropshipping automatisation
   
-** Production
+** [0/11] Frontend
++ [ ] Home
++ [ ] About
++ [ ] Contact
++ [ ] Product List
++ [ ] Product detail
++ [ ] Cart
++ [ ] Checkout
++ [ ] Successful Payment
++ [ ] Cancelled Payment
++ [ ] Retrieve Order
++ [ ] Ask for Refund
+  
+** [0/7] Production
 Will most likely go with digital ocean
 
++ [ ] Setup server (firewall, user, etc.)
 + [ ] Create Postgres db
-+ [ ] Production emails
-+ [ ] Check Celery and rabbitmq for production
++ [ ] Setup production emails
++ [ ] Setup Celery and rabbitmq for production
 + [ ] Integrate Stripe in Production mode
++ [ ] Maybe log system
+
+** [0/1] Testing
++ [ ] CRUD testing
+  - [ ] Products
+  - [ ] Orders
+...

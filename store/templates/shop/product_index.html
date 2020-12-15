@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Product List</h1>
+    <form method="get">
+        {{ filter.form.as_p  }}
+        <button type="submit">filter</button>
+    </form>
+    <div class="product-list">
+        <ul>
+            {% for product in filter.qs %}
+                <li><strong>{{ product.title }}</strong> - <i>{{ product.category }}</i> - {{ product.price }}</li>
+            {% empty %}
+                no products...
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}
