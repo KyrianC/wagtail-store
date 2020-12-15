@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from shop.models import Product
 
@@ -18,6 +19,8 @@ class Order(models.Model):
         (CANCELLED, "Cancelled"),
         (FULLFILED, "Fullfiled"),
     ]
+    # https://docs.djangoproject.com/en/3.1/ref/models/fields/#uuidfield
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     email = models.EmailField()
@@ -37,7 +40,7 @@ class Order(models.Model):
     def get_total_cost(self):
         return sum(item.get_cost() for item in self.items.all())
 
-    # TODO send different emails in each cases
+    # TODO send different emails in each cases through tasks
     def update_status_paid(self):
         self.status = self.AWAITING_FULLFILEMENT
         self.paid = True
