@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "treemodeladmin",  # https://github.com/cfpb/wagtail-treemodeladmin
+    "django_filters",  # https://django-filter.readthedocs.io/en/stable/guide/install.html
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
