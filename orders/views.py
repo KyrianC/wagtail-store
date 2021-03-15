@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from .models import OrderItem
-from .forms import OrderCreateForm
+from django.shortcuts import render, get_object_or_404
+from .models import OrderItem, Order
+from .forms import OrderCreateForm, OrderRetrieveForm
 from .tasks import order_created
 from cart.cart import Cart
 
@@ -32,3 +32,14 @@ def order_create(request):
     else:
         form = OrderCreateForm()
     return render(request, "orders/create.html", {"cart": cart, "form": form})
+
+def order_retrieve(request):
+    order = None
+    if request.method == 'POST':
+        form = OrderRetrieveForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            order = Order.objects.filter(id=cd['id']).first()
+    else:
+        form = OrderRetrieveForm()
+    return render(request, "orders/retrieve.html", {"form": form, "order": order})

@@ -5,5 +5,9 @@
 {% block body_class %}template-homepage{% endblock %}
 
 {% block content %}
-<a href="{% url 'orders:create' %}">Checkout</a>
+    {% for item in cart %}
+        <li>{{ item.product }} - {{ item.quantity }}</li>
+    {% endfor %}
+
+<a href="{% url 'orders:create' %}">Checkout</a> for ${{ cart.get_total_price }}
 {% endblock %}

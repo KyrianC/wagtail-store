@@ -3,9 +3,7 @@ from django.db import models
 from shop.models import Product
 
 
-# TODO add an uuid field to show customers and help them retrieve their orders
-
-
+# DONE change id to uuid, so we can show order's uuid to customers for them to retrieve past orders
 class Order(models.Model):
     INCOMPLETE = "ac"
     AWAITING_PAYMENT = "ap"

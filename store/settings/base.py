@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     "cart",
     "shop",
     "home",
-    "orders",
+    "orders.apps.OrdersConfig",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",

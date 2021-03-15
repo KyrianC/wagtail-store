@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Retrieve Order</h1>
+<form method='POST'>
+{{ form.as_p}}
+{% csrf_token %}
+<button type='submit'>Search</button>
+</form>
+{% if order %}
+{{ order.id }}
+<p>Item bought:</p>
+    {% for item in order.items.all %}
+        <li>{{ item.product }} x{{ item.quantity }}</li>
+        <p>paid: {{ order.paid }}</p>
+        <p>status: {{ order.get_status_display }}</p>
+    {% endfor %}
+{% endif %}
+{% endblock content %}

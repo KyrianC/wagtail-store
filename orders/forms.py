@@ -14,3 +14,6 @@ class OrderCreateForm(forms.ModelForm):
             "city",
             "State",
         )
+
+class OrderRetrieveForm(forms.Form):
+    id = forms.UUIDField(required=True)
