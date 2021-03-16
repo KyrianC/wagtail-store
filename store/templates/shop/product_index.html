@@ -1,18 +1,27 @@
 {% extends 'base.html' %}
 
+{% load wagtailcore_tags %}
+
 {% block content %}
     <h1>Product List</h1>
     <form method="get">
         {{ filter.form.as_p  }}
-        <button type="submit">filter</button>
+        <!-- <button type="submit">filter</button> -->
     </form>
     <div class="product-list">
         <ul>
             {% for product in filter.qs %}
-                <li><strong>{{ product.title }}</strong> - <i>{{ product.category }}</i> - {{ product.price }}</li>
+                <li><a href="{% pageurl product %}">{{ product.title }}</a> - <i>{{ product.category }}</i> - {{ product.price }}</li>
             {% empty %}
                 no products...
             {% endfor %}
         </ul>
     </div>
 {% endblock content %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+     f = document.forms[0]
+     f.addEventListener("change", ()=> f.submit())
+    </script>
+{% endblock %}
