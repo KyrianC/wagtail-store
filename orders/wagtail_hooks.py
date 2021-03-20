@@ -1,8 +1,8 @@
-from wagtail.contrib.modeladmin.options import modeladmin_register
+from wagtail.contrib.modeladmin.options import modeladmin_register, ModelAdmin
 
 from treemodeladmin.options import TreeModelAdmin
 
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Refund
 
 
 class OrderItemModelAdmin(TreeModelAdmin):
@@ -32,3 +32,15 @@ class OrderModelAdmin(TreeModelAdmin):
     list_filter = ("paid", "status")
     list_export = ("updated",)
     search_fields = ("email", "first_name", "last_name", "city", "State", "stripe_id")
+
+
+@modeladmin_register
+class RefundModelAdmin(ModelAdmin):
+    model = Refund
+    menu_label = "Refunds"
+    menu_icon = "placeholder"
+    menu_order = 300
+    inspect_view_enabled = True
+    add_to_settings_menu = False  # or True to add your model to the Settings sub-menu
+    exclude_from_explorer = False
+    list_display = ("order", "status", "created", "updated")
