@@ -8,12 +8,15 @@
 <button type='submit'>Search</button>
 </form>
 {% if order %}
-{{ order.id }}
+    {{ order.id }}: {{ order.get_status_display }}
+    {% if not order.refund %}
+        - <a href="{% url 'orders:refund' order.id %}">ask for a refund</a>
+    {% else %}
+        refund status: {{ order.refund.get_status_display }}
+    {% endif %}
 <p>Item bought:</p>
     {% for item in order.items.all %}
         <li>{{ item.product }} x{{ item.quantity }}</li>
-        <p>paid: {{ order.paid }}</p>
-        <p>status: {{ order.get_status_display }}</p>
     {% endfor %}
 {% endif %}
 {% endblock content %}
