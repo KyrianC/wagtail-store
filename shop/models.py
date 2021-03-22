@@ -1,6 +1,7 @@
 from cart.forms import CartAddProductForm
 
 from django.db import models
+from django.db.models import Func, F
 from django.utils.html import format_html
 
 from wagtail.admin.edit_handlers import FieldPanel
@@ -62,10 +63,24 @@ class Product(Page):
     def name(self):
         return format_html("<strong>{}</strong>", self.title.upper())
 
+    def get_recommendations(self):
+        """
+        Get recommendation based on similar price in the same category
+        """
+        RECOMMENDATION_NUMBER = 3
+        return (
+            Product.objects.filter(category=self.category)
+            .annotate(price_diff=Func(F("price") - self.price, function="abs"))
+            .exclude(id=self.id)
+            .order_by("price_diff")[:RECOMMENDATION_NUMBER]
+        )
+
     def get_context(self, request):
         context = super().get_context(request)
+        recommendations = self.get_recommendations()
         cart_form = CartAddProductForm()
         context["cart_form"] = cart_form
+        context["recommendations"] = recommendations
         return context
 
 

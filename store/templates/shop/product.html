@@ -12,4 +12,15 @@
         {% csrf_token %}
         <button type="submit">add to cart</button>
     </form>
+    <section>
+        <h2>Recommendations</h2>
+        <ul>
+        {% for item in recommendations %}
+            <li>
+                <h3>{{ item.title }}- ${{ item.price }}</h3>
+                {% image page.thumbnail fill-150x150 %}
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
 {% endblock %}
