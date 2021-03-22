@@ -1,0 +1,10 @@
+{% extends 'modeladmin/inspect.html' %}
+
+{% block content %}
+    {{ block.super }}
+
+    {% for image_model in instance.images.all %}
+        <a href="{{ image_model.image.url }}" target="_blank"><img width="600" src="{{ image_model.image.url }}" class="nice-padding" /></a>
+        <br />
+    {% endfor %}
+{% endblock %}
