@@ -3,27 +3,28 @@
 *Wagtail store following "django 3 by example" store example*
 
 * Todos
-** [5/21] Development
+** [7/21] Development
 + [X] Product + Catogory model
 + [X] Order model + modeladmin
 + [X] Cart
 + [X] Celery email
 + [-] Payment integration with Stripe
   + [X] checkout
+  + [X] stripe hooks for checkout process
   + [ ] receive payouts
-  + [ ] refunds
+  + [ ] hook for refunds process
 + [X] Add filtering and exporting func to modelAdmin for Products and Orders
 + [-] Invoicing + email templates
   - [X] normal django email
   - [ ] Sending with an email provider like sendgrid
 + [-] Product filtering
-+ [-] orders management for anomymous customers
++ [X] orders management for anomymous customers
   - [X] retreive orders with order id
-  - [ ] refund order system for retrieved order
-+ [ ] Product recommendation
+  - [X] refund order system for retrieved order
++ [X] Product recommendation
 + [ ] Discount system
-+ [ ] User authentication (address, orders, etc.)
-+ [ ] Collection + Product attributes
++ [ ] User authentication
++ [ ] Collections + Product attributes
 + [ ] Inventory Management 
 + [ ] Shipping Management
 + [ ] International Store (language, currency, shipping)
@@ -31,7 +32,7 @@
 + [ ] Add analytics to dashboard (google + custom)
 + [ ] Maybe Connect to telegram bot for real time updates and semi-automatisation
 + [ ] Dropshipping automatisation
-+ [ ] reviewing bought product system
++ [ ] customers being able to review product bought
   
 ** [0/11] Frontend
 + [ ] Home
