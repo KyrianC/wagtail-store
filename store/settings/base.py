@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "home",
     "orders.apps.OrdersConfig",
     "search",
+    "theme",  # Tailwind theme
     "wagtail.contrib.forms",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     "taggit",
     "treemodeladmin",  # https://github.com/cfpb/wagtail-treemodeladmin
     "django_filters",  # https://django-filter.readthedocs.io/en/stable/guide/install.html
+    "tailwind",  # https://github.com/timonweb/django-tailwind
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -143,6 +145,7 @@ STATICFILES_FINDERS = [
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, "static"),
+    os.path.join(BASE_DIR, "theme/static"),  # For tailwind stuffs
 ]
 
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
@@ -170,3 +173,5 @@ CART_SESSION_ID = "cart"
 STRIPE_PUBLISHABLE_KEY = "pk_test_51GwohlBjQ630eujhfZEFlaFTtmkQ3raz4OCsx3rVrrBnggltkDoNCsCM6pMWQAcIxugUD3qXwjfoILyrF4ahlLXW00HORXltZh"
 STRIPE_SECRET_KEY = "sk_test_51GwohlBjQ630eujhGswTc3z6MzGKceTkkKgl8LLdA1hT0u5NCz8vLJyOBIymlCjrc4zDzia0TysiAtEqxRC770MD007FQ5YDVP"
 STRIPE_WEBHOOK_SECRET = "whsec_CKHciriiJv65KDmWVmV7z4qbBq7mfhCX"
+
+TAILWIND_APP_NAME = "theme"
